@@ -12,7 +12,7 @@ public final class Automata {
     private final ArrayList<LinkedHashMap<Character, Integer>> dicList = new ArrayList<>(100);
     
     public Automata(String text){
-        initializar(text);
+        initialize(text);
     }
     
     public Set getSet(){
@@ -23,7 +23,7 @@ public final class Automata {
         return dicList;
     }
 
-    private void initializar(String text) {
+    private void initialize(String text) {
         
         LinkedHashMap<Character, Integer> dic = new LinkedHashMap<>();
         for (char element : text.toCharArray()) {
