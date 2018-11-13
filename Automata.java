@@ -1,16 +1,15 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.LinkedHashMap;
 import java.util.Set;
 
 /**
  * @author ANDERSON BALLESTEROS
  */
  
-public class Automata {
-    private Set<Character> set= new HashSet<>();
-    private ArrayList<HashMap<Character, Integer>> dicList = new ArrayList<>(100);
+public final class Automata {
+    private final Set<Character> set= new HashSet<>();
+    private final ArrayList<LinkedHashMap<Character, Integer>> dicList = new ArrayList<>(100);
     
     public Automata(String text){
         initializar(text);
@@ -20,26 +19,27 @@ public class Automata {
         return set;
     }
 
-    public ArrayList<HashMap<Character, Integer>> getDicList() {
+    public ArrayList<LinkedHashMap<Character, Integer>> getDicList() {
         return dicList;
     }
 
-    public void initializar(String text) {
+    private void initializar(String text) {
         
-        HashMap<Character, Integer> dic = new HashMap<>();
+        LinkedHashMap<Character, Integer> dic = new LinkedHashMap<>();
         for (char element : text.toCharArray()) {
             dic.put(element, 0);
             set.add(element);
         }
+        
         Integer terminal = 0;
-        dicList.add((HashMap<Character, Integer>)dic.clone());
+        dicList.add((LinkedHashMap<Character, Integer>)dic.clone());
+        
         for (char element : text.toCharArray()) {
             Character T = element; 
             Integer r = dicList.get(terminal).get(T);
             Integer s = terminal+1;
             dicList.get(terminal).put(T, s);
-            dicList.add((HashMap<Character, Integer>)(dicList.get(r).clone()));
-            
+            dicList.add((LinkedHashMap<Character, Integer>)(dicList.get(r).clone()));
             terminal++;
         }
     }
