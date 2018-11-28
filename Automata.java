@@ -37,7 +37,6 @@ public final class Automata {
                 q = 0;
             }else if (q.equals(terminal)) {
                 ocurrences++;
-                q = 0;
             }
         }
         return ocurrences;
